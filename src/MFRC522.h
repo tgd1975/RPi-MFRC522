@@ -75,16 +75,14 @@
 #ifndef MFRC522_h
 #define MFRC522_h
 
-#include "require_cpp11.h"
 #include "deprecated.h"
 // Enable integer limits
 #define __STDC_LIMIT_MACROS
 #include <stdint.h>
-#include <Arduino.h>
-#include <SPI.h>
+#include "Arduino.h"
 
 #ifndef MFRC522_SPICLOCK
-#define MFRC522_SPICLOCK SPI_CLOCK_DIV4			// MFRC522 accept upto 10MHz
+#define MFRC522_SPICLOCK BCM2835_SPI_CLOCK_DIVIDER_64			// MFRC522 accept upto 10MHz
 #endif
 
 // Firmware data for self-test
@@ -93,7 +91,7 @@
 //
 // Version 0.0 (0x90)
 // Philips Semiconductors; Preliminary Specification Revision 2.0 - 01 August 2005; 16.1 self-test
-const byte MFRC522_firmware_referenceV0_0[] PROGMEM = {
+const byte MFRC522_firmware_referenceV0_0[] = {
 	0x00, 0x87, 0x98, 0x0f, 0x49, 0xFF, 0x07, 0x19,
 	0xBF, 0x22, 0x30, 0x49, 0x59, 0x63, 0xAD, 0xCA,
 	0x7F, 0xE3, 0x4E, 0x03, 0x5C, 0x4E, 0x49, 0x50,
@@ -105,7 +103,7 @@ const byte MFRC522_firmware_referenceV0_0[] PROGMEM = {
 };
 // Version 1.0 (0x91)
 // NXP Semiconductors; Rev. 3.8 - 17 September 2014; 16.1.1 self-test
-const byte MFRC522_firmware_referenceV1_0[] PROGMEM = {
+const byte MFRC522_firmware_referenceV1_0[] = {
 	0x00, 0xC6, 0x37, 0xD5, 0x32, 0xB7, 0x57, 0x5C,
 	0xC2, 0xD8, 0x7C, 0x4D, 0xD9, 0x70, 0xC7, 0x73,
 	0x10, 0xE6, 0xD2, 0xAA, 0x5E, 0xA1, 0x3E, 0x5A,
@@ -117,7 +115,7 @@ const byte MFRC522_firmware_referenceV1_0[] PROGMEM = {
 };
 // Version 2.0 (0x92)
 // NXP Semiconductors; Rev. 3.8 - 17 September 2014; 16.1.1 self-test
-const byte MFRC522_firmware_referenceV2_0[] PROGMEM = {
+const byte MFRC522_firmware_referenceV2_0[] = {
 	0x00, 0xEB, 0x66, 0xBA, 0x57, 0xBF, 0x23, 0x95,
 	0xD0, 0xE3, 0x0D, 0x3D, 0x27, 0x89, 0x5C, 0xDE,
 	0x9D, 0x3B, 0xA7, 0x00, 0x21, 0x5B, 0x89, 0x82,
@@ -129,7 +127,7 @@ const byte MFRC522_firmware_referenceV2_0[] PROGMEM = {
 };
 // Clone
 // Fudan Semiconductor FM17522 (0x88)
-const byte FM17522_firmware_reference[] PROGMEM = {
+const byte FM17522_firmware_reference[] = {
 	0x00, 0xD6, 0x78, 0x8C, 0xE2, 0xAA, 0x0C, 0x18,
 	0x2A, 0xB8, 0x7A, 0x7F, 0xD3, 0x6A, 0xCF, 0x0B,
 	0xB1, 0x37, 0x63, 0x4B, 0x69, 0xAE, 0x91, 0xC7,
@@ -334,9 +332,6 @@ public:
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Functions for setting up the Arduino
 	/////////////////////////////////////////////////////////////////////////////////////
-	MFRC522();
-	DEPRECATED_MSG("use MFRC522(byte chipSelectPin, byte resetPowerDownPin)")
-	MFRC522(byte resetPowerDownPin);
 	MFRC522(byte chipSelectPin, byte resetPowerDownPin);
 	
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -354,8 +349,6 @@ public:
 	// Functions for manipulating the MFRC522
 	/////////////////////////////////////////////////////////////////////////////////////
 	void PCD_Init();
-	DEPRECATED_MSG("use PCD_Init(byte chipSelectPin, byte resetPowerDownPin)")
-	void PCD_Init(byte resetPowerDownPin);
 	void PCD_Init(byte chipSelectPin, byte resetPowerDownPin);
 	void PCD_Reset();
 	void PCD_AntennaOn();
@@ -403,11 +396,11 @@ public:
 	StatusCode PCD_MIFARE_Transceive(byte *sendData, byte sendLen, bool acceptTimeout = false);
 	// old function used too much memory, now name moved to flash; if you need char, copy from flash to memory
 	//const char *GetStatusCodeName(byte code);
-	static const __FlashStringHelper *GetStatusCodeName(StatusCode code);
+	static std::string GetStatusCodeName(StatusCode code);
 	static PICC_Type PICC_GetType(byte sak);
 	// old function used too much memory, now name moved to flash; if you need char, copy from flash to memory
 	//const char *PICC_GetTypeName(byte type);
-	static const __FlashStringHelper *PICC_GetTypeName(PICC_Type type);
+	static std::string PICC_GetTypeName(PICC_Type type);
 	
 	// Support functions for debuging
 	void PCD_DumpVersionToSerial();

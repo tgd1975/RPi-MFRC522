@@ -6,7 +6,7 @@
 #ifndef MFRC522Extended_h
 #define MFRC522Extended_h
 
-#include <Arduino.h>
+#include "Arduino.h"
 #include "MFRC522.h"
 
 class MFRC522Extended : public MFRC522 {
@@ -77,8 +77,6 @@ public:
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Contructors
 	/////////////////////////////////////////////////////////////////////////////////////
-	MFRC522Extended() : MFRC522() {};
-	MFRC522Extended(uint8_t rst) : MFRC522(rst) {};
 	MFRC522Extended(uint8_t ss, uint8_t rst) : MFRC522(ss, rst) {};
 	
 	/////////////////////////////////////////////////////////////////////////////////////
