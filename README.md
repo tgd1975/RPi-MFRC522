@@ -13,8 +13,12 @@ This simply uses the same methods as https://github.com/miguelbalboa/rfid but mo
 Has the same methods, signatures, functions, and limitations as https://github.com/miguelbalboa/rfid (at least it should)
 
 ## Getting started
-Markup : 1. Install the bcm2835 library from http://www.airspayce.com/mikem/bcm2835/
+1. Install the bcm2835 library
+1. Download the latest version of the bcm2835 library on http://www.airspayce.com/mikem/bcm2835/
 
+2. Use ```cd``` to navigate to the folder where bcm2835-1.xx.tar.gz is downloaded
+
+3. Run the following commands to install the library
 ```bash
 tar zxvf bcm2835-1.xx.tar.gz
 
@@ -29,7 +33,8 @@ sudo make check
 sudo make install
 ```
 
-2. Build the ReadNUID example
+2. Build the an example
+Here is how you'd build the ReadNUID example
 ```bash
 g++ src/*.cpp examples/ReadNUID/ReadNUID.cpp -std=c++20 -lbcm2835
 ```
