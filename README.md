@@ -29,5 +29,7 @@ sudo make check
 sudo make install
 ```
 
-2. Build the example
-g++ MFRC522.cpp example.cpp -std=c++14 -lbcm2835
+2. Build the ReadNUID example
+```bash
+g++ src/*.cpp examples/ReadNUID/ReadNUID.cpp -std=c++20 -lbcm2835
+```
