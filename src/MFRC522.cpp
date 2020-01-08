@@ -13,6 +13,13 @@
 /////////////////////////////////////////////////////////////////////////////////////
 /**
  * Constructor.
+ */
+MFRC522::MFRC522() {
+	bcm2835_init();
+} // End constructor
+
+/**
+ * Constructor.
  * Prepares the output pins.
  */
 MFRC522::MFRC522(	byte chipSelectPin,		///< Arduino pin connected to MFRC522's SPI slave select input (Pin 24, NSS, active low)
