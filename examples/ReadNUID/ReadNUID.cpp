@@ -6,7 +6,7 @@
 #define RST_PIN RPI_V2_GPIO_P1_15  
 // The GPIO pin that's connected to the MFRC522's SDA pin, 
 // sometimes labeled SS or CE or CS.
-// Doesn't have to be one of the CE pins on the Pi
+// Doesn't have to be one of the CE pins on the pi
 #define SS_PIN RPI_V2_GPIO_P1_38   
 /**
  * Helper routine to dump a byte array as hex values to Serial.
@@ -27,7 +27,7 @@ void printDec(uint8_t *buffer, size_t bufferSize) {
 }
 
 int main() {
-  MFRC522 rfid(RST_PIN, SS_PIN);  // Instance of the class
+  MFRC522 rfid(SS_PIN, RST_PIN);  // Instance of the class
   rfid.PCD_Init();
 
   // Init array that will store new NUID
