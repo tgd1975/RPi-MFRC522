@@ -14,6 +14,17 @@ Has the same methods, signatures, functions, and limitations as https://github.c
 
 ## Getting started
 (Do the following on your Raspberry Pi)
+### Connecting your MFRC522 to your Raspberry Pi
+1. Open https://pinout.xyz/pinout/spi in your browser as a reference.
+2. Connect the 3.3v pin on the MFRC522 to any 3.3v pin on the Raspberry Pi.  
+   Connect the RST pin on the MFRC522 to any GPIO pin on the Raspberry Pi.  
+   Connect the GND pin on the MFRC522 to any ground pin on the Raspberry Pi.  
+   Leave the IRQ pin unconnected.  
+   Connect the MISO pin on the MFRC522 to the MISO pin (19) on the Raspberry Pi.  
+   Connect the MOSI pin on the MFRC522 to the MOSI pin (21) on the Raspberry Pi.  
+   Connect the SCK pin on the MFRC522 to the SCLK pin (23) on the Raspberry Pi.  
+   Connect the SDA pin on the MFRC522 to any GPIO pin on the Raspberry Pi.  
+   (GPIO pins are just pins that are not ground or power) 
 ### Install the bcm2835 library
 1. Download the latest version of the bcm2835 library on http://www.airspayce.com/mikem/bcm2835/
 
