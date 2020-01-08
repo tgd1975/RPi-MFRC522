@@ -13,6 +13,7 @@ This simply uses the same methods as https://github.com/miguelbalboa/rfid but mo
 Has the same methods, signatures, functions, and limitations as https://github.com/miguelbalboa/rfid (at least it should)
 
 ## Getting started
+(Do the following on your raspberry pi)
 ### Install the bcm2835 library
 1. Download the latest version of the bcm2835 library on http://www.airspayce.com/mikem/bcm2835/
 
@@ -34,7 +35,13 @@ sudo make install
 ```
 
 ### Try an example
-Here is how you'd build the ReadNUID example
+1. Download this repo by running ```git clone https://github.com/CoolCyberBrain/RPi-MFRC522.git```
+2. Enter the folder by running ```cd RPi-MFRC522```
+3. Build the ReadNUID example by running the following command
 ```bash
-g++ src/*.cpp examples/ReadNUID/ReadNUID.cpp -std=c++20 -lbcm2835
+g++ src/*.cpp examples/ReadNUID/ReadNUID.cpp -I src -std=c++17 -lbcm2835
+```
+4. Run the example by running the following command (if you don't run in sudo the program will crash, need sudo to access the GPIO pins)
+```bash
+sudo ./a.out
 ```
