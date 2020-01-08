@@ -1,13 +1,19 @@
 #include <cstdio>
+
 #include "MFRC522.h"
 
+// The GPIO pin that's connected to the MFRC522's reset pin
+#define RST_PIN RPI_V2_GPIO_P1_15  
+// The GPIO pin that's connected to the MFRC522's SDA pin, 
+// sometimes labeled SS or CE or CS.
+// Doesn't have to be one of the CE pins on the Pi
+#define SS_PIN RPI_V2_GPIO_P1_38   
 /**
  * Helper routine to dump a byte array as hex values to Serial.
  */
 void printHex(uint8_t *buffer, size_t bufferSize) {
   for (size_t i = 0; i < bufferSize; i++) {
-    printf(buffer[i] < 0x10 ? " 0" : " ");
-    printf("%X", buffer[i]);
+    printf(" %02X", buffer[i]);
   }
 }
 
@@ -16,13 +22,12 @@ void printHex(uint8_t *buffer, size_t bufferSize) {
  */
 void printDec(uint8_t *buffer, size_t bufferSize) {
   for (size_t i = 0; i < bufferSize; i++) {
-    printf(buffer[i] < 0x10 ? " 0" : " ");
-    printf("%u", buffer[i]);
+    printf(" %03u", buffer[i]);
   }
 }
 
 int main() {
-  MFRC522 rfid(RPI_V2_GPIO_P1_38, RPI_V2_GPIO_P1_15);  // Instance of the class
+  MFRC522 rfid(RST_PIN, SS_PIN);  // Instance of the class
   rfid.PCD_Init();
 
   // Init array that will store new NUID
