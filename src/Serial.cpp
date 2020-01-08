@@ -11,47 +11,47 @@
 
 // Public Methods //////////////////////////////////////////////////////////////
 
-size_t Serial_::write(const uint8_t *buffer, size_t size)
+size_t SerialClass::write(const uint8_t *buffer, size_t size)
 {
   return fwrite(buffer, size, 1, stdout);
 }
 
-size_t Serial_::write(uint8_t c)
+size_t SerialClass::write(uint8_t c)
 {
   return write(&c, 1);
 }
 
-size_t Serial_::print(const std::string &s)
+size_t SerialClass::print(const std::string &s)
 {
   return write(s.c_str(), s.length());
 }
 
-size_t Serial_::print(const char str[])
+size_t SerialClass::print(const char str[])
 {
   return write(str);
 }
 
-size_t Serial_::print(char c)
+size_t SerialClass::print(char c)
 {
   return write(c);
 }
 
-size_t Serial_::print(unsigned char b, int base)
+size_t SerialClass::print(unsigned char b, int base)
 {
   return print((unsigned long)b, base);
 }
 
-size_t Serial_::print(int n, int base)
+size_t SerialClass::print(int n, int base)
 {
   return print((long)n, base);
 }
 
-size_t Serial_::print(unsigned int n, int base)
+size_t SerialClass::print(unsigned int n, int base)
 {
   return print((unsigned long)n, base);
 }
 
-size_t Serial_::print(long n, int base)
+size_t SerialClass::print(long n, int base)
 {
   if (base == 0)
   {
@@ -73,7 +73,7 @@ size_t Serial_::print(long n, int base)
   }
 }
 
-size_t Serial_::print(unsigned long n, int base)
+size_t SerialClass::print(unsigned long n, int base)
 {
   if (base == 0)
     return write(n);
@@ -81,73 +81,73 @@ size_t Serial_::print(unsigned long n, int base)
     return printNumber(n, base);
 }
 
-size_t Serial_::print(double n, int digits)
+size_t SerialClass::print(double n, int digits)
 {
   return printFloat(n, digits);
 }
 
-size_t Serial_::println(void)
+size_t SerialClass::println(void)
 {
   return write("\r\n");
 }
 
-size_t Serial_::println(const std::string &s)
+size_t SerialClass::println(const std::string &s)
 {
   size_t n = print(s);
   n += println();
   return n;
 }
 
-size_t Serial_::println(const char c[])
+size_t SerialClass::println(const char c[])
 {
   size_t n = print(c);
   n += println();
   return n;
 }
 
-size_t Serial_::println(char c)
+size_t SerialClass::println(char c)
 {
   size_t n = print(c);
   n += println();
   return n;
 }
 
-size_t Serial_::println(unsigned char b, int base)
+size_t SerialClass::println(unsigned char b, int base)
 {
   size_t n = print(b, base);
   n += println();
   return n;
 }
 
-size_t Serial_::println(int num, int base)
+size_t SerialClass::println(int num, int base)
 {
   size_t n = print(num, base);
   n += println();
   return n;
 }
 
-size_t Serial_::println(unsigned int num, int base)
+size_t SerialClass::println(unsigned int num, int base)
 {
   size_t n = print(num, base);
   n += println();
   return n;
 }
 
-size_t Serial_::println(long num, int base)
+size_t SerialClass::println(long num, int base)
 {
   size_t n = print(num, base);
   n += println();
   return n;
 }
 
-size_t Serial_::println(unsigned long num, int base)
+size_t SerialClass::println(unsigned long num, int base)
 {
   size_t n = print(num, base);
   n += println();
   return n;
 }
 
-size_t Serial_::println(double num, int digits)
+size_t SerialClass::println(double num, int digits)
 {
   size_t n = print(num, digits);
   n += println();
@@ -156,7 +156,7 @@ size_t Serial_::println(double num, int digits)
 
 // Private Methods /////////////////////////////////////////////////////////////
 
-size_t Serial_::printNumber(unsigned long n, uint8_t base)
+size_t SerialClass::printNumber(unsigned long n, uint8_t base)
 {
   char buf[8 * sizeof(long) + 1]; // Assumes 8-bit chars plus zero byte.
   char *str = &buf[sizeof(buf) - 1];
@@ -178,7 +178,7 @@ size_t Serial_::printNumber(unsigned long n, uint8_t base)
   return write(str);
 }
 
-size_t Serial_::printFloat(double number, uint8_t digits)
+size_t SerialClass::printFloat(double number, uint8_t digits)
 {
   size_t n = 0;
 

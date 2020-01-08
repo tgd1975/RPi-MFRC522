@@ -1,3 +1,4 @@
+#include <cstdio>
 #include "MFRC522.h"
 
 /**

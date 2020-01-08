@@ -12,14 +12,14 @@
 #define OCT 8
 #define BIN 2
 
-class Serial_
+class SerialClass
 {
 private:
   size_t printNumber(unsigned long, uint8_t);
   size_t printFloat(double, uint8_t);
 
 public:
-  Serial_() {}
+  SerialClass() {}
 
   size_t write(uint8_t);
   size_t write(const char *str)
@@ -55,6 +55,6 @@ public:
   size_t println(double, int = 2);
   size_t println(void);
 };
-extern Serial_ Serial;
+extern SerialClass Serial;
 
 #endif

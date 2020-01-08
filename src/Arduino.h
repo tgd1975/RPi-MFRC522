@@ -10,7 +10,6 @@
 #include <string.h>
 #include <math.h>
 #include "bcm2835.h"
-#include "Serial.h"
 
 #define INPUT BCM2835_GPIO_FSEL_INPT
 #define OUTPUT BCM2835_GPIO_FSEL_OUTP
