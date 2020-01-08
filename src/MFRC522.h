@@ -79,6 +79,7 @@
 // Enable integer limits
 #define __STDC_LIMIT_MACROS
 #include <stdint.h>
+#include <string>
 #include "Arduino.h"
 
 #ifndef MFRC522_SPICLOCK

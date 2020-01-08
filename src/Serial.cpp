@@ -227,3 +227,5 @@ size_t SerialClass::printFloat(double number, uint8_t digits)
 
   return n;
 }
+
+SerialClass Serial;
