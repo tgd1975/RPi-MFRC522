@@ -1,3 +1,5 @@
+// Adapted from https://github.com/miguelbalboa/rfid/blob/master/examples/ReadNUID/ReadNUID.ino
+
 #include <cstdio>
 
 #include "MFRC522.h"
@@ -11,7 +13,7 @@
 
 
 /**
- * Helper routine to dump a byte array as hex values to Serial.
+ * Helper routine to dump a byte array as hex values.
  */
 void printHex(uint8_t *buffer, size_t bufferSize) {
   for (size_t i = 0; i < bufferSize; i++) {
@@ -20,7 +22,7 @@ void printHex(uint8_t *buffer, size_t bufferSize) {
 }
 
 /**
- * Helper routine to dump a byte array as dec values to Serial.
+ * Helper routine to dump a byte array as dec values.
  */
 void printDec(uint8_t *buffer, size_t bufferSize) {
   for (size_t i = 0; i < bufferSize; i++) {
