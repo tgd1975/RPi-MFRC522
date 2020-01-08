@@ -10,10 +10,10 @@ int main() {
   while (1) {
     // Reset the loop if no new card present on the sensor/reader. This saves
     // the entire process when idle.
-    if (!rfid.PICC_IsNewCardPresent()) return;
+    if (!rfid.PICC_IsNewCardPresent()) continue;
 
     // Verify if the NUID has been readed
-    if (!rfid.PICC_ReadCardSerial()) return;
+    if (!rfid.PICC_ReadCardSerial()) continue;
 
     printf("PICC type: ");
     MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
@@ -25,7 +25,7 @@ int main() {
         piccType != MFRC522::PICC_TYPE_MIFARE_1K &&
         piccType != MFRC522::PICC_TYPE_MIFARE_4K) {
       printf("Your tag is not of type MIFARE Classic.\n");
-      return;
+      continue;
     }
 
     if (rfid.uid.uidByte[0] != nuidPICC[0] ||
