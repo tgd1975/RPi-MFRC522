@@ -1,5 +1,25 @@
 #include "MFRC522.h"
 
+/**
+ * Helper routine to dump a byte array as hex values to Serial.
+ */
+void printHex(uint8_t *buffer, size_t bufferSize) {
+  for (size_t i = 0; i < bufferSize; i++) {
+    printf(buffer[i] < 0x10 ? " 0" : " ");
+    printf("%X", buffer[i]);
+  }
+}
+
+/**
+ * Helper routine to dump a byte array as dec values to Serial.
+ */
+void printDec(uint8_t *buffer, size_t bufferSize) {
+  for (size_t i = 0; i < bufferSize; i++) {
+    printf(buffer[i] < 0x10 ? " 0" : " ");
+    printf("%u", buffer[i]);
+  }
+}
+
 int main() {
   MFRC522 rfid(RPI_V2_GPIO_P1_38, RPI_V2_GPIO_P1_15);  // Instance of the class
   rfid.PCD_Init();
@@ -56,24 +76,4 @@ int main() {
   }
 
   return 0;
-}
-
-/**
- * Helper routine to dump a byte array as hex values to Serial.
- */
-void printHex(uint8_t *buffer, size_t bufferSize) {
-  for (size_t i = 0; i < bufferSize; i++) {
-    printf(buffer[i] < 0x10 ? " 0" : " ");
-    printf("%X", buffer[i]);
-  }
-}
-
-/**
- * Helper routine to dump a byte array as dec values to Serial.
- */
-void printDec(uint8_t *buffer, size_t bufferSize) {
-  for (size_t i = 0; i < bufferSize; i++) {
-    printf(buffer[i] < 0x10 ? " 0" : " ");
-    printf("%u", buffer[i]);
-  }
 }
