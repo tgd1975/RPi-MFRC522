@@ -13,7 +13,7 @@ This simply uses the same methods as https://github.com/miguelbalboa/rfid but mo
 Has the same methods, signatures, functions, and limitations as https://github.com/miguelbalboa/rfid (at least it should)
 
 ## Getting started
-(Do the following on your raspberry pi)
+(Do the following on your Raspberry Pi)
 ### Install the bcm2835 library
 1. Download the latest version of the bcm2835 library on http://www.airspayce.com/mikem/bcm2835/
 
