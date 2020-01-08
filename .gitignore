@@ -4,3 +4,4 @@ cmake
 CMakeLists.txt
 .DS_Store
 .vscode
+.out
