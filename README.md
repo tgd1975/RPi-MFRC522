@@ -50,7 +50,7 @@ sudo make install
 2. Enter the folder by running ```cd RPi-MFRC522```
 3. Build the ReadNUID example by running the following command
 ```bash
-g++ src/*.cpp examples/ReadNUID/ReadNUID.cpp -I src -std=c++17 -lbcm2835
+g++ src/**/*.cpp src/*.cpp examples/ReadUidMultiReader/ReadUidMultiReader.cpp -I src -I src/RPi-Arduino-SPI -std=c++17 -lbcm2835
 ```
 4. Run the example by running the following command (if you don't run in sudo the program will crash, need sudo to access the GPIO pins)
 ```bash
