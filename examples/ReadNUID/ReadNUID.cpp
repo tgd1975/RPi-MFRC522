@@ -3,11 +3,13 @@
 #include "MFRC522.h"
 
 // The GPIO pin that's connected to the MFRC522's reset pin
-#define RST_PIN RPI_V2_GPIO_P1_15  
+#define RST_PIN RPI_V2_GPIO_P1_15
 // The GPIO pin that's connected to the MFRC522's SDA pin, 
 // sometimes labeled SS or CE or CS.
 // Doesn't have to be one of the CE pins on the pi
-#define SS_PIN RPI_V2_GPIO_P1_38   
+#define SS_PIN RPI_V2_GPIO_P1_38
+
+
 /**
  * Helper routine to dump a byte array as hex values to Serial.
  */
