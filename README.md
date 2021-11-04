@@ -65,3 +65,39 @@ g++ src/**/*.cpp src/*.cpp examples/ReadUidMultiReader/ReadUidMultiReader.cpp -I
 ```bash
 sudo ./a.out
 ```
+
+### Example with a static library
+#### Prerequisites
+1. Download this repo by running ```git clone https://github.com/CoolCyberBrain/RPi-MFRC522.git```
+2. Enter the folder by running ```cd RPi-MFRC522```
+
+#### Build the static library
+1. Create the folder ```lib``` and enter the folder by running ```mkdir lib && cd lib```
+2. Build the object files by running the following command 
+```bash
+ g++ ../src/**/*.cpp ../src/*.cpp -I ../src -I ../src/RPi-Arduino-SPI -std=c++17 -lbcm2835 -c
+```
+3. Create the static library by running the following command
+````bash
+ar rcs libmfrc522.a *.o
+```
+4. Remove the object files by running ```rm *.o```
+5. Copy the necessary header files into the current folder by running the following commands
+```
+bash
+cp ../src/MFRC522Extended.h .
+cp ../src/MFRC522.h .
+cp ../src/deprecated.h .
+cp ../src/RPi-Arduino-SPI/Arduino.h .
+```
+6. return to the project root folder by running ```cd ..```
+
+#### Build the Example
+1. Build the ReadNUID example by running the following command
+```bash
+g++ -Ilib examples/ReadNUID/ReadNUID.cpp -Llib -lmfrc522 -lbcm2835 -std=c++17 -o readnuid
+```
+2. Run the example by running the following command (if you don't run in sudo the program will crash, need sudo to access the GPIO pins)
+```bash
+sudo ./readnuid
+```
