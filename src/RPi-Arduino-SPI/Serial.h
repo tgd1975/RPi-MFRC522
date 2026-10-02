@@ -5,6 +5,7 @@
 #ifndef Serial_h
 #define Serial_h
 
+#include <cstdint>
 #include <string>
 
 #define DEC 10
