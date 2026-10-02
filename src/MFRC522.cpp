@@ -7,6 +7,8 @@
 #include "MFRC522.h"
 #include "SPI.h"
 #include "Serial.h"
+#include <stdexcept>
+#include <cstdio>
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Functions for setting up the Arduino
@@ -15,7 +17,10 @@
  * Constructor.
  */
 MFRC522::MFRC522() {
-	bcm2835_init();
+	if (!bcm2835_init()) {
+		printf("bcm2835_init failed. Are you running as root?\n");
+		throw std::runtime_error("bcm2835_init failed. Are you running as root?\n");
+	}
 } // End constructor
 
 /**
@@ -25,7 +30,10 @@ MFRC522::MFRC522() {
 MFRC522::MFRC522(	byte chipSelectPin,		///< Arduino pin connected to MFRC522's SPI slave select input (Pin 24, NSS, active low)
 					byte resetPowerDownPin	///< Arduino pin connected to MFRC522's reset and power down input (Pin 6, NRSTPD, active low). If there is no connection from the CPU to NRSTPD, set this to UINT8_MAX. In this case, only soft reset will be used in PCD_Init().
 				) {
-	bcm2835_init();
+	if (!bcm2835_init()) {
+		printf("bcm2835_init failed. Are you running as root?\n");
+		throw std::runtime_error("bcm2835_init failed. Are you running as root?\n");
+	}
 	_chipSelectPin = chipSelectPin;
 	_resetPowerDownPin = resetPowerDownPin;
 } // End constructor
